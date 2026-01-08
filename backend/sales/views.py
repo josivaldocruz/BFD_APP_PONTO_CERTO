@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from .models import Sale, SaleItem, Payment
-from products.models import Product
-from cash.models import CashSession
+from backend.products.models import Product
+from backend.cash.models import CashSession
 
 @login_required
 def pos(request):

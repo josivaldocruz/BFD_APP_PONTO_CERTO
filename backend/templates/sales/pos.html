@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}PDV - Ponto Certo{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Carrinho de Vendas</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Preço Unit.</th>
+                                <th>Desconto</th>
+                                <th>Total</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-items">
+                            <!-- Itens do carrinho serão carregados aqui via HTMX -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Resumo</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="product-search" class="form-label">Buscar Produto</label>
+                    <input type="text" class="form-control" id="product-search" placeholder="Código ou nome">
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary w-100" id="scan-barcode">Ler Código de Barras</button>
+                </div>
+                <hr>
+                <div class="mb-3">
+                    <label class="form-label">Subtotal</label>
+                    <input type="text" class="form-control" id="subtotal" value="R$ 0,00" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Desconto</label>
+                    <input type="text" class="form-control" id="discount" value="R$ 0,00" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Total</label>
+                    <input type="text" class="form-control" id="total" value="R$ 0,00" readonly>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success btn-lg" id="checkout">Finalizar Venda</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Lógica para buscar produtos e adicionar ao carrinho via HTMX
+    document.getElementById('product-search').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            // Disparar busca
+        }
+    });
+</script>
+{% endblock %}

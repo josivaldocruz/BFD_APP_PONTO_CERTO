@@ -3,8 +3,8 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from django.contrib.auth import get_user_model
-from products.models import Product
-from customers.models import Customer
+from backend.products.models import Product
+from backend.customers.models import Customer
 
 User = get_user_model()
 

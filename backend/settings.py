@@ -14,11 +14,16 @@ import os
 from pathlib import Path
 import environ
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR aponta para /workspaces/BFD_APP_PONTO_CERTO
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, '../.env'))
+
+# REMOVA o '../' do caminho. O .env está na BASE_DIR.
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+# Agora o Django encontrará a chave
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
@@ -45,15 +50,15 @@ INSTALLED_APPS = [
     'django_htmx',
     'django_extensions',
     # Local apps
-    'core',
-    'products',
-    'inventory',
-    'sales',
-    'cash',
-    'customers',
-    'reports',
-    'audit',
-    'integration',
+    'backend.core',
+    'backend.products',
+    'backend.inventory',
+    'backend.sales',
+    'backend.cash',
+    'backend.customers',
+    'backend.reports',
+    'backend.audit',
+    'backend.integration',
 ]
 
 MIDDLEWARE = [

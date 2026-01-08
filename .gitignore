@@ -1,3 +1,6 @@
 .env
 .PONTO_CERTO/
+__pycache__/.env
+.PONTO_CERTO/
 __pycache__/
+*.pyc

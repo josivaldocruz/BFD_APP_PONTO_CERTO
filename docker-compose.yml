@@ -5,12 +5,50 @@ services:
     image: postgres:15
     environment:
       POSTGRES_DB: ponto_certo
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ponto_certo_user
+      POSTGRES_PASSWORD: ponto_certo_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ponto_certo_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - redis_data:/data
+
+  web:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgres://ponto_certo_user:ponto_certo_pass@db:5432/ponto_certo
+      - REDIS_URL=redis://redis:6379/0
+      - DB_NAME=ponto_certo
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
   postgres_data:
+  redis_data:
+  static_volume:
+  media_volume:

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Produtos</h1>
+<ul>
+{% for p in products %}
+    <li>{{ p.name }} - {{ p.sku }}</li>
+{% empty %}
+    <li>Nenhum produto cadastrado.</li>
+{% endfor %}
+</ul>
+{% endblock %}

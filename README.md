@@ -1,4 +1,4 @@
-https://chat.deepseek.com/share/i9zd2lv6bkcodi36fr
+
 
 # BFD_APP_PONTO_CERTO
 

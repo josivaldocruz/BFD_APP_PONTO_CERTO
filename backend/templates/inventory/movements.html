@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Movimentações de Estoque</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Produto</th>
+            <th>Tipo</th>
+            <th>Quantidade</th>
+            <th>Usuário</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for m in movements %}
+        <tr>
+            <td>{{ m.created_at }}</td>
+            <td>{{ m.product.name }}</td>
+            <td>{{ m.get_movement_type_display }}</td>
+            <td>{{ m.quantity }}</td>
+            <td>{{ m.user.get_full_name|default:m.user.username }}</td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="5">Nenhuma movimentação encontrada.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

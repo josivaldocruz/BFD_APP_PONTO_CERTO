@@ -3,6 +3,8 @@
 import os
 import sys
 
+# Adicionar o diretório raiz ao sys.path para resolver ModuleNotFoundError
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 def main():
     """Run administrative tasks."""

@@ -32,7 +32,12 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS = ['https://localhost:8000']
+CSRF_TRUSTED_ORIGINS = ['https://localhost:8000',
+                        'https://*.github.dev',
+                        'https://*.app.github.dev',
+                        'http://localhost:8001',
+                        'https://localhost:8001',
+                        ]
 
 # Application definition
 
@@ -155,3 +160,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ],
 }
+
+# No final do arquivo settings.py
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'  # Ou o nome da página inicial desejada
+LOGOUT_REDIRECT_URL = 'login'

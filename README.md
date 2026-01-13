@@ -268,3 +268,9 @@ ponto_certo/
 ├── requirements.txt
 └── README.md
 
+------------------------------------------------------
+
+source .PONTO_CERTO/bin/activate
+docker-compose up -d
+python manage.py runserver 8001
+python manage.py createsuperuser

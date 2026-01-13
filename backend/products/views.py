@@ -6,7 +6,7 @@ from .forms import ProductForm
 def list(request):
 	"""Listagem simples de produtos usada pelo menu."""
 	products = Product.objects.filter(is_active=True) if hasattr(Product, 'objects') else []
-	return render(request, 'products/templates/products/list.html', {'products': products})
+	return render(request, 'products/list.html', {'products': products})
 
 def product_create(request):
     if request.method == 'POST':
@@ -16,4 +16,4 @@ def product_create(request):
             return redirect('pos') # Ou 'home'
     else:
         form = ProductForm()
-    return render(request, 'products/templates/products/product_form.html', {'form': form})
+    return render(request, 'templates/products/product_form.html', {'form': form})
